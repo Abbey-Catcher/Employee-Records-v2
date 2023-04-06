@@ -20,7 +20,18 @@ namespace EmployeeRecords
         }
 
         private void addButton_Click(object sender, EventArgs e)
-        { 
+        {
+            string id, firstName, lastName, date, salary;
+
+            id = idInput.Text;
+            firstName = fnInput.Text;
+            lastName = lnInput.Text;
+            date = dateInput.Text;
+            salary = salaryInput.Text;
+
+            Employee newEmp = new Employee(id, firstName, lastName, date, salary);
+            employeeDB.Add(newEmp);
+
             ClearLabels();
         }
 
@@ -31,7 +42,10 @@ namespace EmployeeRecords
 
         private void listButton_Click(object sender, EventArgs e)
         {
-
+            foreach (Employee emp in employeeDB)
+            {
+                outputLabel.Text += $"{emp.id} {emp.firstName} {emp.lastName} {emp.date} {emp.salary}";
+            }
         }
 
         private void ClearLabels()
